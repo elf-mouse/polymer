@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Shadow DOM</title>
+  <script src="../bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+  <link rel="import" href="../bower_components/polymer/polymer.html">
+</head>
+
+<body>
+  <dom-module id="custom-button1">
+    <style>
+    #my-button {
+      color: red;
+    }
+    </style>
+    <template>
+      <button id="my-button">
+        <content></content>
+      </button>
+    </template>
+    <script>
+    Polymer({
+      is: 'custom-button1'
+    });
+    </script>
+  </dom-module>
+  <dom-module id="custom-button2">
+    <style>
+    #my-button {
+      color: blue;
+    }
+    </style>
+    <template>
+      <button id="my-button">
+        <content></content>
+      </button>
+    </template>
+    <script>
+    Polymer({
+      is: 'custom-button2'
+    });
+    </script>
+  </dom-module>
+  <custom-button1>Red Button Text</custom-button1>
+  <custom-button2>Blue Button Text</custom-button2>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Two-Way Binding</title>
+  <script src="../bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+  <link rel="import" href="../bower_components/polymer/polymer.html">
+</head>
+
+<body>
+  <dom-module id="my-input">
+    <style>
+    #ti {
+      color: red;
+    }
+    </style>
+    <template>
+      <input id="ti" type="text" value="{{tival::input}}">
+      <div id="val">value: </div>
+      <button on-click="abc">abc </button>
+    </template>
+    <script>
+    Polymer({
+      is: 'my-input',
+      properties: {
+        tival: {
+          type: String,
+          observer: 'handleChange'
+        }
+      },
+      handleChange: function() {
+        console.log('change');
+        this.$.val.innerHTML = 'value: ' + this.tival;
+      },
+      abc: function() {
+        this.tival = 'abc';
+      }
+    });
+    </script>
+  </dom-module>
+  <my-input></my-input>
+</body>
+
+</html>

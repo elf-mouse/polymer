@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Data Binding</title>
+  <script src="../bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+  <link rel="import" href="../bower_components/polymer/polymer.html">
+</head>
+
+<body>
+  <dom-module id="parent-children">
+    <style>
+    div {
+      border: 1px solid black;
+      padding: 5px;
+      margin-bottom: 10px;
+    }
+    </style>
+    <template>
+      <div>
+        <p>My name is <span>{{name}}</span></p>
+        <p>I have <span>{{count}}</span> children:</p>
+        <ol>
+          <template is="dom-repeat" items="{{children}}">
+            <li>{{item}}</li>
+          </template>
+        </ol>
+      </div>
+    </template>
+    <script>
+    Polymer({
+      is: 'parent-children',
+      properties: {
+        name: {
+          type: String,
+          value: 'John'
+        },
+        children: {
+          type: Array,
+          value: [
+            'child 1',
+            'child 2',
+            'child 3'
+          ]
+        },
+        count: {
+          type: Number,
+          computed: 'getCount(children)'
+        }
+      },
+      getCount: function(children) {
+        return children.length;
+      }
+    });
+    </script>
+  </dom-module>
+  <parent-children></parent-children>
+  <parent-children name="Paul"></parent-children>
+  <parent-children name="George" children='["child a", "child b"]'></parent-children>
+  <parent-children id="ringo" name="Ringo"></parent-children>
+  <script>
+  document.addEventListener('WebComponentsReady', function() {
+    console.log('polymer-ready');
+    document.getElementById('ringo').children = [
+      'one',
+      'two',
+      'three',
+      'four '
+    ];
+  });
+  </script>
+</body>
+
+</html>
